@@ -1,10 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState, useRef, useContext, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  useRef,
+  useContext,
+  useEffect,
+  useCallback,
+} from "react";
 import MyHeader from "./MyHeader";
 import MyButton from "./MyButton";
 import EmotionItem from "./EmotionItem";
 import { DiaryDispatchContext } from "./../App.js";
 import { emotionList } from "./../util/emotionList";
+import TextareaMarkdown from "./../util/textarea-markdown";
 
 const getStringDate = (date) => {
   return date.toISOString().slice(0, 10);
