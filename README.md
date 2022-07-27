@@ -2,9 +2,6 @@
 
 ## 🪓 tool: React
 
-## How to Use
+## 🤽 developers: KimMinHee | SohnSooKyoung
 
-1. 폴더를 넣고 싶은 경로로 터미널 이동
-2. git clone https://github.com/sm-CODE-IT/Mini_Waterglass.git
-3. npm install
-4. npm start
+## 💻 확인하기
