@@ -90,12 +90,11 @@ header .head_btn_right {
 header button {
   font-family: 'Nanum Pen Script';
 }
+.fc-header-toolbar {
+  margin-top: 20px;
+}
 
 /* DiaryList */
-.DiaryList .right_col button {
-  width: 100%;
-  margin-top: 10px;
-}
 
 /* DiaryItem */
 .DiaryItem {
