@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState, useRef, useContext, useEffect, useCallback } from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
+// components
 import MyHeader from "./MyHeader";
 import MyButton from "./MyButton";
 import EmotionItem from "./EmotionItem";
 import { DiaryDispatchContext } from "./../App.js";
 import { emotionList } from "./../util/emotionList";
+import MarkdownEditor from "./MarkdownEditor";
+import Preview from "./Preview";
 
 const getStringDate = (date) => {
   return date.toISOString().slice(0, 10);
@@ -13,14 +16,18 @@ const getStringDate = (date) => {
 const DiaryEditor = ({ isEdit, originData }) => {
   const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
   const [content, setContent] = useState("");
-  const contentRef = useRef();
   const [emotion, setEmotion] = useState(3);
   const [date, setDate] = useState("");
   const navigate = useNavigate();
+  const editor = document.querySelector(".editor");
 
   const handleSubmit = () => {
     if (content.length < 1) {
-      contentRef.current.focus();
+      editor.classList.add("alertBlank");
+      editor.addEventListener("click", function () {
+        editor.classList.remove("alertBlank");
+      });
+
       return;
     }
 
@@ -84,7 +91,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
       ></MyHeader>
       <div>
         <section>
-          <h4>오늘은 언제인가요?</h4>
+          <h4 className="title">오늘은 언제인가요?</h4>
           <div className="input_box">
             <input
               className="input_date"
@@ -95,7 +102,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
           </div>
         </section>
         <section>
-          <h4>오늘의 감정</h4>
+          <h4 className="title">오늘의 감정</h4>
           <div className="input_box emotion_list_wrapper">
             {emotionList.map((it) => (
               <EmotionItem
@@ -108,14 +115,22 @@ const DiaryEditor = ({ isEdit, originData }) => {
           </div>
         </section>
         <section>
-          <h4>오늘의 일기</h4>
-          <div className="input_box text_wrapper">
-            <textarea
-              placeholder="오늘은 어땠나요?"
-              ref={contentRef}
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-            ></textarea>
+          <div className="text_wrapper">
+            <div>
+              <h4 className="title">오늘의 일기</h4>
+              <div className="input_box text_wrapper">
+                <MarkdownEditor
+                  content={content}
+                  setContent={setContent}
+                ></MarkdownEditor>
+              </div>
+            </div>
+            <div>
+              <h4 className="title">Preview</h4>
+              <div className="output_box markdown_wrapper">
+                <Preview content={content}></Preview>
+              </div>
+            </div>
           </div>
         </section>
         <section>

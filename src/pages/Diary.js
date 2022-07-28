@@ -4,6 +4,7 @@ import { DiaryStateContext } from "../App";
 import { emotionList } from "../util/emotionList";
 import MyHeader from "../components/MyHeader";
 import MyButton from "../components/MyButton";
+import Preview from "../components/Preview";
 
 const getStringDate = (date) => {
   return date.toISOString().slice(0, 10);
@@ -15,11 +16,13 @@ const Diary = () => {
   const navigate = useNavigate();
   const [data, setDate] = useState();
 
+  console.log(id);
+
   // 페이지 별 타이틀 수정하기
   useEffect(() => {
-    const titleElem = document.getElementsByTagName('title')[0];
-    titleElem.innerHTML = `감정 일기장-${id}번 일기`
-  }, [])
+    const titleElem = document.getElementsByTagName("title")[0];
+    titleElem.innerHTML = `감정 일기장-${id}번 일기`;
+  }, []);
 
   useEffect(() => {
     if (diaryList.length >= 1) {
@@ -47,7 +50,7 @@ const Diary = () => {
     return (
       <div className="DiaryPage">
         <MyHeader
-          headText={`${getStringDate(new Date(data.date))} 기록`}
+          headText={`${date} 기록`}
           leftChild={
             <MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />
           }
@@ -58,9 +61,9 @@ const Diary = () => {
             />
           }
         ></MyHeader>
-        <article>
+        <article className="diary_img_content">
           <section>
-            <h4>오늘의 감정</h4>
+            <h4 className="title">오늘의 감정</h4>
             <div
               className={[
                 "diary_img_wrapper",
@@ -74,9 +77,9 @@ const Diary = () => {
             </div>
           </section>
           <section>
-            <h4>오늘의 일기</h4>
+            <h4 className="title">오늘의 일기</h4>
             <div className="diary_content_wrapper">
-              <p>{data.content}</p>
+              <Preview content={data.content}></Preview>
             </div>
           </section>
         </article>

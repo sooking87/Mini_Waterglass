@@ -3,66 +3,56 @@ import React, { useContext, useEffect, useState } from "react";
 import MyHeader from "./../components/MyHeader";
 import MyButton from "./../components/MyButton";
 import DiaryList from "../components/DiaryList";
+// cal modules
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid"; //기본 달력을 그리기 위한 플러그인 - 설치해야함!
+import interactionPlugin from "@fullcalendar/interaction"; //이벤트,클릭,드래그 등의 기능을 이용하기 위한 플러그인
 import { DiaryStateContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   // 페이지 별 타이틀 수정하기
   useEffect(() => {
     const titleElem = document.getElementsByTagName("title")[0];
     titleElem.innerHTML = `감정 일기장`;
   }, []);
-  const diaryList = useContext(DiaryStateContext);
 
-  // 현재 월에 해당하는 일기만 필요하므로 useState 사용
-  const [data, setData] = useState([]);
-  const [curDate, setCurDate] = useState(new Date());
-
-  const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
-
-  // 해당 달에 작성된 일기만 추리기 위한 코드
-  useEffect(() => {
-    if (diaryList.length >= 1) {
-      const firstDay = new Date(
-        curDate.getFullYear(),
-        curDate.getMonth(),
-        1
-      ).getTime();
-      const lastDay = new Date(
-        curDate.getFullYear(),
-        curDate.getMonth() + 1,
-        0,
-        23,
-        59,
-        59
-      ).getTime();
-
-      setData(
-        diaryList.filter((it) => firstDay <= it.date && it.date <= lastDay)
+  const renderEventContent = (eventInfo, diaryList) => {
+    //+버튼 화면에 출력
+    if (diaryList) {
+      return (
+        <div>
+          <img
+            className="eventimage"
+            src="/assets/addDiary.png"
+            onClick={() => navigate(`/new`)}
+            width="85"
+            height="85"
+          />
+        </div>
       );
     }
-  }, [diaryList, curDate]);
+  };
 
-  // 버튼 클릭 -> 월이 바뀔 수 있도록 하는 메서드
-  const increaseMonth = () => {
-    setCurDate(
-      new Date(curDate.getFullYear(), curDate.getMonth() + 1),
-      curDate.getDate()
-    );
-  };
-  const decreaseMonth = () => {
-    setCurDate(
-      new Date(curDate.getFullYear(), curDate.getMonth() - 1),
-      curDate.getDate()
-    );
-  };
   return (
-    <div>
-      <MyHeader
-        headText={headText}
-        leftChild={<MyButton text={"<"} onClick={decreaseMonth} />}
-        rightChild={<MyButton text={">"} onClick={increaseMonth} />}
-      ></MyHeader>
-      <DiaryList diaryList={data}></DiaryList>
+    <div className="main_container">
+      <FullCalendar
+        plugins={[dayGridPlugin, interactionPlugin]}
+        initialView="dayGridMonth"
+        editable="true" //이벤트,드래그 등의 편집 기능 활용여부
+        events={[
+          { daysOfWeek: [0, 1, 2, 3, 4, 5, 6], color: "white" }, //월화수목금토일-> +버튼 생성
+        ]}
+        height="90vh"
+        eventContent={renderEventContent} //이벤트 내용 커스텀
+        headerToolbar={{
+          //헤드 툴바
+          start: "prev",
+          center: "title",
+          end: "next",
+        }}
+      />
     </div>
   );
 };
