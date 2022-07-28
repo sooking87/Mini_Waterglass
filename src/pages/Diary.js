@@ -16,6 +16,8 @@ const Diary = () => {
   const navigate = useNavigate();
   const [data, setDate] = useState();
 
+  console.log(id);
+
   // 페이지 별 타이틀 수정하기
   useEffect(() => {
     const titleElem = document.getElementsByTagName("title")[0];

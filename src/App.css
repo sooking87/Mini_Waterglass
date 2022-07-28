@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&family=Nanum+Pen+Script&display=swap');
 body {
   background-color: #f6f6f6;
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,7 +9,10 @@ body {
   min-height: 100vh;
   margin: 0px;
 }
-
+.dark_mode {
+  background: #48494E;
+  color: white;
+}
 @media (min-width: 650px) {
   .App {
     width: 640px;
