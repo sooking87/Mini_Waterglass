@@ -6,12 +6,14 @@ import React, {
   useEffect,
   useCallback,
 } from "react";
+// components
 import MyHeader from "./MyHeader";
 import MyButton from "./MyButton";
 import EmotionItem from "./EmotionItem";
 import { DiaryDispatchContext } from "./../App.js";
 import { emotionList } from "./../util/emotionList";
-import TextareaMarkdown from "./../util/textarea-markdown";
+import MarkdownEditor from './MarkdownEditor';
+import Preview from './Preview';
 
 const getStringDate = (date) => {
   return date.toISOString().slice(0, 10);
@@ -20,17 +22,13 @@ const getStringDate = (date) => {
 const DiaryEditor = ({ isEdit, originData }) => {
   const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
   const [content, setContent] = useState("");
-  const contentRef = useRef();
+  // const contentRef = useRef();
   const [emotion, setEmotion] = useState(3);
   const [date, setDate] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    if (content.length < 1) {
-      contentRef.current.focus();
-      return;
-    }
-
+    
     if (
       window.confirm(
         isEdit
@@ -116,13 +114,13 @@ const DiaryEditor = ({ isEdit, originData }) => {
         </section>
         <section>
           <h4>오늘의 일기</h4>
-          <div className="input_box text_wrapper">
-            <textarea
-              placeholder="오늘은 어땠나요?"
-              ref={contentRef}
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-            ></textarea>
+          <div className="text_wrapper">
+              <div className="input_box text_wrapper">
+                <MarkdownEditor content={content} setContent={setContent}></MarkdownEditor>
+              </div>
+              <div className="output_box markdown_wrapper">
+                <Preview content={content}></Preview>
+              </div>
           </div>
         </section>
         <section>

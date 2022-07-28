@@ -4,6 +4,7 @@ import { DiaryStateContext } from "../App";
 import { emotionList } from "../util/emotionList";
 import MyHeader from "../components/MyHeader";
 import MyButton from "../components/MyButton";
+import Preview from "../components/Preview";
 
 const getStringDate = (date) => {
   return date.toISOString().slice(0, 10);
@@ -60,7 +61,7 @@ const Diary = () => {
         ></MyHeader>
         <article>
           <section>
-            <h4>오늘의 감정</h4>
+            <h4 className="title">오늘의 감정</h4>
             <div
               className={[
                 "diary_img_wrapper",
@@ -74,10 +75,10 @@ const Diary = () => {
             </div>
           </section>
           <section>
-            <h4>오늘의 일기</h4>
-            <div className="diary_content_wrapper">
-              <p>{data.content}</p>
-            </div>
+            <h4 className="title">오늘의 일기</h4>
+            <p className="diary_content_wrapper">
+              <Preview content={data.content}></Preview>
+            </p>
           </section>
         </article>
       </div>

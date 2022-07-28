@@ -207,9 +207,29 @@ header button {
   font-size: 20px;
 
   box-sizing: border-box;
-  width: 100%;
-  min-height: 200px;
+  width: 280px;
+  min-height: 300px;
   resize: vertical;
+
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+
+  padding: 20px;
+  margin-right: 40px;
+}
+.DiaryEditor .text_wrapper {
+  display: flex;
+  word-wrap: break-word;
+  justify-content: center;
+}
+.DiaryEditor #preview {
+  font-family: "Nanum Pen Script";
+  font-size: 20px;
+
+  box-sizing: border-box;
+  width: 280px;
+  min-height: 300px;
 
   border: none;
   border-radius: 5px;
@@ -222,6 +242,7 @@ header button {
   justify-content: space-between;
   align-items: center;
 }
+
 /* EmotionItem */
 .EmotionItem {
   cursor: pointer;
@@ -285,7 +306,7 @@ header button {
   align-items: center;
   text-align: center;
 }
-.DiaryPage h4 {
+.DiaryPage .title {
   font-size: 22px;
   font-weight: bold;
 }
@@ -328,11 +349,12 @@ header button {
   word-break: keep-all;
   overflow-wrap: break-word; 
 }
-.DiaryPage .diary_content_wrapper p {
-  padding: 28px;
-  text-align: left;
-  font-size: 20px;
+.DiaryPage #preview {
   font-family: 'Yeon sung';
+  font-size: 22px;
   font-weight: 400;
-  line-height: 2.5;
+  line-height: 2.0;
+  width: 100%;
+  text-align: left;
+  padding-left: 40px;
 }
