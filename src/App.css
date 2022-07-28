@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Yeon+Sung&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&family=Nanum+Pen+Script&display=swap');
 body {
   background-color: #f6f6f6;
   display: flex;
@@ -175,10 +175,7 @@ header button {
 .DiaryEditor {
 
 }
-.DiaryEditor section {
-  margin-bottom: 40px;
-}
-.DiaryEditor h4 {
+.DiaryEditor .title {
   font-size: 22px;
   font-weight: bold;
 }
@@ -194,17 +191,18 @@ header button {
   padding-right: 20px;
 
   cursor: pointer;
-  font-family: "Nanum Pen Script";
+  font-family: 'Nanum Pen Script', cursive;
 }
 
 .DiaryEditor .emotion_list_wrapper {
   display: grid;
+  
   grid-template-columns: repeat(5, auto);
   gap: 2%;
 }
 .DiaryEditor textarea {
-  font-family: "Nanum Pen Script";
-  font-size: 20px;
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 15px;
 
   box-sizing: border-box;
   width: 280px;
@@ -222,9 +220,11 @@ header button {
   display: flex;
   word-wrap: break-word;
   justify-content: center;
+
+  margin-bottom: 30px;
 }
 .DiaryEditor #preview {
-  font-family: "Nanum Pen Script";
+  font-family: 'Nanum Myeongjo', serif;
   font-size: 20px;
 
   box-sizing: border-box;
@@ -299,7 +299,7 @@ header button {
 }
 .DiaryPage section {
   width: 100%;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 
   display: flex;
   flex-direction: column;
@@ -350,10 +350,10 @@ header button {
   overflow-wrap: break-word; 
 }
 .DiaryPage #preview {
-  font-family: 'Yeon sung';
-  font-size: 22px;
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 18px;
   font-weight: 400;
-  line-height: 2.0;
+  line-height: 1.8;
   width: 100%;
   text-align: left;
   padding-left: 40px;

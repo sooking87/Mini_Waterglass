@@ -1,24 +1,26 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
-const TextArea = ({content, setContent}) => {
+const TextArea = ({ content, setContent }) => {
   const contentRef = useRef();
 
-//   if (content.length < 1) {
-//       contentRef.current.focus();
-//       return;
-//     }
+  useEffect(() => {
+    console.log("TextArea", content.length);
+    if (content.length < 1) {
+      contentRef.current.focus();
+    }
+  }, [content.length]);
 
   return (
     <textarea
       placeholder="오늘은 어땠나요?"
-      id='editor'
-      ref={contentRef}
+      id="editor"
       value={content}
-      onChange={(e) => setContent(
-            e.target.value
-        )}>
-    </textarea>
-  )
-}
+      ref={contentRef}
+      onChange={(e) => {
+        setContent(e.target.value);
+      }}
+    ></textarea>
+  );
+};
 
 export default TextArea;

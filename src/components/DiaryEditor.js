@@ -12,8 +12,8 @@ import MyButton from "./MyButton";
 import EmotionItem from "./EmotionItem";
 import { DiaryDispatchContext } from "./../App.js";
 import { emotionList } from "./../util/emotionList";
-import MarkdownEditor from './MarkdownEditor';
-import Preview from './Preview';
+import MarkdownEditor from "./MarkdownEditor";
+import Preview from "./Preview";
 
 const getStringDate = (date) => {
   return date.toISOString().slice(0, 10);
@@ -22,13 +22,21 @@ const getStringDate = (date) => {
 const DiaryEditor = ({ isEdit, originData }) => {
   const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
   const [content, setContent] = useState("");
-  // const contentRef = useRef();
+  const textWrapperRef = useRef();
   const [emotion, setEmotion] = useState(3);
   const [date, setDate] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    
+    if (content.length < 1) {
+      textWrapperRef.current.focus();
+      return;
+    }
+    // console.log("DiaryEditor", content.length);
+    // if (content.length < 1) {
+    //   return;
+    // }
+
     if (
       window.confirm(
         isEdit
@@ -89,7 +97,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
       ></MyHeader>
       <div>
         <section>
-          <h4>오늘은 언제인가요?</h4>
+          <h4 className="title">오늘은 언제인가요?</h4>
           <div className="input_box">
             <input
               className="input_date"
@@ -100,7 +108,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
           </div>
         </section>
         <section>
-          <h4>오늘의 감정</h4>
+          <h4 className="title">오늘의 감정</h4>
           <div className="input_box emotion_list_wrapper">
             {emotionList.map((it) => (
               <EmotionItem
@@ -113,14 +121,22 @@ const DiaryEditor = ({ isEdit, originData }) => {
           </div>
         </section>
         <section>
-          <h4>오늘의 일기</h4>
           <div className="text_wrapper">
+            <div>
+              <h4 className="title">오늘의 일기</h4>
               <div className="input_box text_wrapper">
-                <MarkdownEditor content={content} setContent={setContent}></MarkdownEditor>
+                <MarkdownEditor
+                  content={content}
+                  setContent={setContent}
+                ></MarkdownEditor>
               </div>
+            </div>
+            <div>
+              <h4 className="title">Preview</h4>
               <div className="output_box markdown_wrapper">
                 <Preview content={content}></Preview>
               </div>
+            </div>
           </div>
         </section>
         <section>
