@@ -18,9 +18,9 @@ const Diary = () => {
 
   // 페이지 별 타이틀 수정하기
   useEffect(() => {
-    const titleElem = document.getElementsByTagName('title')[0];
-    titleElem.innerHTML = `감정 일기장-${id}번 일기`
-  }, [])
+    const titleElem = document.getElementsByTagName("title")[0];
+    titleElem.innerHTML = `감정 일기장-${id}번 일기`;
+  }, []);
 
   useEffect(() => {
     if (diaryList.length >= 1) {
@@ -48,7 +48,7 @@ const Diary = () => {
     return (
       <div className="DiaryPage">
         <MyHeader
-          headText={`${getStringDate(new Date(data.date))} 기록`}
+          headText={`${date} 기록`}
           leftChild={
             <MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />
           }
@@ -59,7 +59,7 @@ const Diary = () => {
             />
           }
         ></MyHeader>
-        <article>
+        <article className="diary_img_content">
           <section>
             <h4 className="title">오늘의 감정</h4>
             <div
@@ -76,9 +76,9 @@ const Diary = () => {
           </section>
           <section>
             <h4 className="title">오늘의 일기</h4>
-            <p className="diary_content_wrapper">
+            <div className="diary_content_wrapper">
               <Preview content={data.content}></Preview>
-            </p>
+            </div>
           </section>
         </article>
       </div>

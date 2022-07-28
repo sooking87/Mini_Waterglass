@@ -8,6 +8,7 @@ body {
   min-height: 100vh;
   margin: 0px;
 }
+
 @media (min-width: 650px) {
   .App {
     width: 640px;
@@ -199,7 +200,11 @@ header button {
 
   margin-bottom: 30px;
 }
-.DiaryEditor #preview {
+.DiaryEditor .alertBlank {
+  border: 2px solid #fd585f;
+  border-radius: 5px;
+}
+.DiaryEditor .preview {
   font-family: 'Nanum Myeongjo', serif;
   font-size: 20px;
 
@@ -211,7 +216,7 @@ header button {
   border-radius: 5px;
   background-color: #ececec;
 
-  padding: 20px;
+  padding: 10px;
 }
 .control_box {
   display: flex;
@@ -273,7 +278,7 @@ header button {
 .DiaryPage {
 
 }
-.DiaryPage section {
+.DiaryPage .diary_img_content {
   width: 100%;
   margin-bottom: 50px;
 
@@ -315,22 +320,20 @@ header button {
   background-color: #fd585f;
 }
 .DiaryPage .emotion_descript {
-  font-size: 25px;
+  font-size: 30px;
   color: white;
 }
-.DiaryPage .diary_content_wrapper {
-  width: 100%;
-  background-color: #ececec;
-  border-radius: 5px;
-  word-break: keep-all;
-  overflow-wrap: break-word; 
-}
-.DiaryPage #preview {
+.DiaryPage .preview {  
+  width: 550px;
   font-family: 'Nanum Myeongjo', serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.8;
-  width: 100%;
   text-align: left;
-  padding-left: 40px;
+  padding: 40px;
+
+  background-color: #ececec;
+  border-radius: 5px;
+  word-break: keep-all;
+  overflow-wrap: break-word; 
 }

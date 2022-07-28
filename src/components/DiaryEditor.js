@@ -1,11 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import React, {
-  useState,
-  useRef,
-  useContext,
-  useEffect,
-  useCallback,
-} from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 // components
 import MyHeader from "./MyHeader";
 import MyButton from "./MyButton";
@@ -22,20 +16,20 @@ const getStringDate = (date) => {
 const DiaryEditor = ({ isEdit, originData }) => {
   const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
   const [content, setContent] = useState("");
-  const textWrapperRef = useRef();
   const [emotion, setEmotion] = useState(3);
   const [date, setDate] = useState("");
   const navigate = useNavigate();
+  const editor = document.querySelector(".editor");
 
   const handleSubmit = () => {
     if (content.length < 1) {
-      textWrapperRef.current.focus();
+      editor.classList.add("alertBlank");
+      editor.addEventListener("click", function () {
+        editor.classList.remove("alertBlank");
+      });
+
       return;
     }
-    // console.log("DiaryEditor", content.length);
-    // if (content.length < 1) {
-    //   return;
-    // }
 
     if (
       window.confirm(
