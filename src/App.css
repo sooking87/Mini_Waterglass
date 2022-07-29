@@ -6,13 +6,13 @@ body {
   justify-content: center;
   align-items: center;
   font-family: 'Nanum Pen Script';
-  min-height: 100vh;
+  height: 100vh;
   margin: 0px;
 }
-.dark_mode {
-  background: #48494E;
-  color: white;
+element.style{
+  height:122vh
 }
+
 @media (min-width: 650px) {
   .App {
     width: 640px;
@@ -25,9 +25,12 @@ body {
   }
 }
 
+
 #root {
   background: white;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 20px 0px;
+  width:55vw;
+  height:600px;
 }
 
 .App {
@@ -338,4 +341,52 @@ header button {
   border-radius: 5px;
   word-break: keep-all;
   overflow-wrap: break-word; 
+}
+@keyframes ani_theme_button {
+  0% {
+    opacity: 0;
+    transform: rotate(120deg)
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(360deg)
+  }
+}
+.App .theme {
+  width: 100%;
+  height: 100vh;
+  transition: 1s;
+}
+.App .light {
+  background: #ececec;
+  color: black;
+}
+.App .dark{
+  background: #29292e;
+  color: #ececec;
+}
+.App .theme_button_wrapper {
+  margin: 100px;
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+.App .theme_button_wrapper:hover {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  
+}
+.App .theme_button_wrapper {
+  margin: 0;
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  position:absolute;
+  left:670px;
+  
+ 
+}
+.fc fc-media-screen fc-direction-ltr fc-theme-standard{
+  min-height:100vh;
 }
