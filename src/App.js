@@ -6,6 +6,12 @@ import Home from "./pages/Home";
 import New from "./pages/New";
 import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
+
+import {useTheme} from "./components/useTheme";
+
+
+
+
 // COMPONENTS
 
 const reducer = (state, action) => {
@@ -89,10 +95,16 @@ function App() {
       },
     });
   };
+  
+  
   return (
+   
+   
     <DiaryStateContext.Provider value={data}>
       <DiaryDispatchContext.Provider value={{ onCreate, onRemove, onEdit }}>
+     
         <BrowserRouter>
+       
           <div className="App">
             <Routes>
               <Route path="/" element={<Home></Home>}></Route>
@@ -101,10 +113,14 @@ function App() {
               <Route path="/diary/:id" element={<Diary></Diary>}></Route>
             </Routes>
           </div>
+          
+     
         </BrowserRouter>
       </DiaryDispatchContext.Provider>
     </DiaryStateContext.Provider>
+
+    
   );
-}
+  };
 
 export default App;
