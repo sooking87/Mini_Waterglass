@@ -44,7 +44,7 @@ const Home = () => {
       eventContent={renderEventContent} //이벤트 내용 커스텀
       events={[
         { title: "event 1", date: "2022-08-01" },
-        { title: "event 2", date: "2022-08-03" },
+        { title: "event 2", date: "2022-08-04" },
       ]}
       headerToolbar={{
         //헤드 툴바
