@@ -8,8 +8,8 @@ import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
 // COMPONENTS
 //for dark,lightmode
-import {useTheme} from "./components/useTheme";
-import { motion } from 'framer-motion';
+import { useTheme } from "./components/useTheme";
+import { motion } from "framer-motion";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -45,10 +45,12 @@ export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
 function App() {
+  const [themeMode, toggleTheme] = useTheme();
 
-  const [themeMode, toggleTheme] = useTheme(); 
- 
-  const theme = themeMode === 'light' ? process.env.PUBLIC_URL + "/assets/sun.png" : process.env.PUBLIC_URL + "/assets/moon.png";
+  const theme =
+    themeMode === "light"
+      ? process.env.PUBLIC_URL + "/assets/sun.png"
+      : process.env.PUBLIC_URL + "/assets/moon.png";
 
   useEffect(() => {
     const localData = localStorage.getItem("diary");
@@ -97,20 +99,21 @@ function App() {
       },
     });
   };
-  
-  
+
   return (
-   
-   
     <DiaryStateContext.Provider value={data}>
       <DiaryDispatchContext.Provider value={{ onCreate, onRemove, onEdit }}>
-     
         <BrowserRouter>
           <div className={["App", `${themeMode}`].join(" ")}>
-            <motion.img src={theme} className="theme_button_wrapper" onClick=   {toggleTheme} whileTap={{
-              opacity: 0,
-              rotate: 70,
-            }}/>
+            <motion.img
+              src={theme}
+              className="theme_button_wrapper"
+              onClick={toggleTheme}
+              whileTap={{
+                opacity: 0,
+                rotate: 100,
+              }}
+            />
             <Routes>
               <Route path="/" element={<Home></Home>}></Route>
               <Route path="/new" element={<New></New>}></Route>
@@ -121,9 +124,7 @@ function App() {
         </BrowserRouter>
       </DiaryDispatchContext.Provider>
     </DiaryStateContext.Provider>
-
-    
   );
-  };
+}
 
 export default App;

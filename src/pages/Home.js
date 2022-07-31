@@ -7,8 +7,6 @@ import interactionPlugin from "@fullcalendar/interaction"; //이벤트,클릭,�
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  
-
   const navigate = useNavigate();
   // 페이지 별 타이틀 수정하기
   useEffect(() => {
@@ -34,28 +32,28 @@ const Home = () => {
   };
 
   return (
-        <FullCalendar
-          plugins={[dayGridPlugin, interactionPlugin]}
-          initialView="dayGridMonth"
-          editable="true" //이벤트,드래그 등의 편집 기능 활용여부
-          events={[
-            { daysOfWeek: [0, 1, 3, 4, 6], color: "white" }, //월화수목금토일-> +버튼 생성
-          ]}
-          height="850px"
-          width="100vw"
-          eventContent={renderEventContent} //이벤트 내용 커스텀
-          
-          headerToolbar={{
-            //헤드 툴바
-            start: "prev",
-            center: "title",
-            end: `next`}
-          }
-        />
-
+    <FullCalendar
+      plugins={[dayGridPlugin, interactionPlugin]}
+      initialView="dayGridMonth"
+      editable="true" //이벤트,드래그 등의 편집 기능 활용여부
+      events={[
+        { daysOfWeek: [0, 1, 3, 4, 6], color: "white" }, //월화수목금토일-> +버튼 생성
+      ]}
+      height="850px"
+      width="100vw"
+      eventContent={renderEventContent} //이벤트 내용 커스텀
+      events={[
+        { title: "event 1", date: "2022-08-01" },
+        { title: "event 2", date: "2022-08-03" },
+      ]}
+      headerToolbar={{
+        //헤드 툴바
+        start: "prev",
+        center: "title",
+        end: `next`,
+      }}
+    />
   );
 };
 
 export default Home;
-
-
