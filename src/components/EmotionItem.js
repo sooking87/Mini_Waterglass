@@ -7,6 +7,7 @@ const EmotionItem = ({
   onClick,
   isSelected,
 }) => {
+  console.log(emotion_descript);
   return (
     <div
       className={[
