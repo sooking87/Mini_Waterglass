@@ -6,6 +6,7 @@ import dayGridPlugin from "@fullcalendar/daygrid"; //기본 달력을 그리기 
 import interactionPlugin from "@fullcalendar/interaction"; //이벤트,클릭,드래그 등의 기능을 이용하기 위한 플러그인
 import { useNavigate } from "react-router-dom";
 
+
 const Home = () => {
   
 
