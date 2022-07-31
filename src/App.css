@@ -6,11 +6,8 @@ body {
   justify-content: center;
   align-items: center;
   font-family: 'Nanum Pen Script';
-  height: 100vh;
+  height: 850px;
   margin: 0px;
-}
-element.style{
-  height:122vh
 }
 
 @media (min-width: 650px) {
@@ -30,11 +27,11 @@ element.style{
   background: white;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 20px 0px;
   width:55vw;
-  height:600px;
+  height:890px;
 }
 
 .App {
-  min-height: 100vh;
+  min-height: 100%;
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -354,7 +351,7 @@ header button {
 }
 .App .theme {
   width: 100%;
-  height: 100vh;
+  height: 850px;
   transition: 1s;
 }
 .App .light {
@@ -374,16 +371,17 @@ header button {
 }
 .App .theme_button_wrapper:hover {
   background: rgba(0, 0, 0, 0.2);
+  background-size:0%;
   border-radius: 50%;
   
 }
 .App .theme_button_wrapper {
   margin: 0;
-  padding: 10px;
-  width: 50px;
-  height: 50px;
+  padding: 30px;
+  width: 20px;
+  height: 20px;
   position:absolute;
-  left:670px;
+  left:653px;
   
  
 }
