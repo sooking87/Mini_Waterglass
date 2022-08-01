@@ -31,8 +31,14 @@ const Home = () => {
       );
     }
   };
-  const handleDateClick = (arg) => {
-    alert(arg.dateStr);
+  const handleDateClick = (dateClickInfo, key, parent) => {
+    // const fcDayElements = document.querySelectorAll(".fc-daygrid-day.fc-day");
+    // console.log(fcDayElements);
+
+    // fcDayElements.forEach((element, key, parent) = {
+    //   element.style.backgroundColor = "";
+    // });
+    // dateClickInfo.dayEl.style.backgroundColor = "#787878";
   };
 
   const handleEventClick = ({ event }) => {
@@ -67,9 +73,30 @@ const Home = () => {
       height="850px"
       width="100vw"
       eventContent={renderEventContent} //이벤트 내용 커스텀
-      eventClick={handleEventClick}
-      dateClick={handleDateClick}
-      events={formatEvents}
+      //eventClick={handleEventClick}
+      dateClick={(dateClickInfo) => {
+        console.log(dateClickInfo.resource);
+        console.log(Object.keys(dateClickInfo).includes('DiaryItem'));
+        if (!Object.keys(dateClickInfo).includes('DiaryItem')) {
+          console.log("처음 클릭");
+          navigate('/new');
+        }
+        else {
+          console.log("DiaryItem 있음")
+        }
+        dateClickInfo.DiaryItem = "something";
+        // get all fc-day element
+        const fcDayElements = document.querySelectorAll(
+          ".fc-daygrid-day.fc-day"
+        );
+        // init background color found element
+        fcDayElements.forEach((element, key, parent) => {
+          element.style.backgroundColor = "";
+        });
+        // set background color clicked Element
+        dateClickInfo.dayEl.style.backgroundColor = "#787878";
+      }}
+      //events={formatEvents}
       //events={this.showContent}
       headerToolbar={{
         //헤드 툴바
