@@ -5,15 +5,32 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid"; //기본 달력을 그리기 위한 플러그인 - 설치해야함!
 import interactionPlugin from "@fullcalendar/interaction"; //이벤트,클릭,드래그 등의 기능을 이용하기 위한 플러그인
 import { useNavigate } from "react-router-dom";
+import DiaryList from "../components/DiaryList";
+import { DiaryStateContext } from "../App";
+
+// 데이터 불러오기
+const testFunc = (clickedDate) => {
+  console.log("testFunc", clickedDate);
+  return (
+    <h2>{clickedDate}</h2>
+  )
+}
 
 const Home = () => {
-  const navigate = useNavigate();
-
   // 페이지 별 타이틀 수정하기
   useEffect(() => {
     const titleElem = document.getElementsByTagName("title")[0];
     titleElem.innerHTML = `감정 일기장`;
   }, []);
+
+  const navigate = useNavigate();
+  const diaryList = useContext(DiaryStateContext);
+
+  // 현재 월에 해당하는 일기만 필요하므로 useState 사용
+  const [data, setData] = useState([]);
+  const [curDate, setCurDate] = useState(new Date());
+
+  
 
   const renderEventContent = (eventInfo, diaryList) => {
     //+버튼 화면에 출력
@@ -46,24 +63,7 @@ const Home = () => {
     this.props.openAppointment(event.extendedProps);
   };
 
-  // 데이터 불러오기
-  function formatEvents(props) {
-    return props.appointments.map((appointment) => {
-      console.log("appointment", appointment);
-      const { title, end, start } = appointment;
-
-      let startTime = new Date(start);
-      let endTime = new Date(end);
-
-      console.log(startTime);
-      // return {
-      //   title,
-      //   start: startTime,
-      //   end: endTime,
-      //   extendedProps: { ...appointment },
-      // };
-    });
-  }
+  
 
   return (
     <FullCalendar
@@ -76,7 +76,7 @@ const Home = () => {
       dateClick={(dateClickInfo) => {
         console.log(dateClickInfo);
         console.log(Object.keys(dateClickInfo).includes('DiaryItem'));
-        const ClickedDate = dateClickInfo.dateStr;
+        const clickedDate = dateClickInfo.dateStr;
         if (!Object.keys(dateClickInfo).includes('DiaryItem')) {
           console.log("처음 클릭");
           // navigate('/new');
@@ -84,7 +84,6 @@ const Home = () => {
         else {
           console.log("DiaryItem 있음")
         }
-        dateClickInfo.DiaryItem = "something";
         // get all fc-day element
         const fcDayElements = document.querySelectorAll(
           ".fc-daygrid-day.fc-day"
@@ -93,8 +92,9 @@ const Home = () => {
         fcDayElements.forEach((element, key, parent) => {
           element.style.backgroundColor = "";
           const elemDate = element.getAttribute('data-date');
-          if (ClickedDate === elemDate) {
-            console.log(ClickedDate, elemDate, "클릭한 날짜랑 같음");
+          if (clickedDate === elemDate) {
+            console.log(clickedDate, elemDate, "클릭한 날짜랑 같음");
+            testFunc(clickedDate);
           }
         });
         // set background color clicked Element
