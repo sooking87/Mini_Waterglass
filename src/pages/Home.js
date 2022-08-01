@@ -73,13 +73,13 @@ const Home = () => {
       height="850px"
       width="100vw"
       eventContent={renderEventContent} //이벤트 내용 커스텀
-      //eventClick={handleEventClick}
       dateClick={(dateClickInfo) => {
-        console.log(dateClickInfo.resource);
+        console.log(dateClickInfo);
         console.log(Object.keys(dateClickInfo).includes('DiaryItem'));
+        const ClickedDate = dateClickInfo.dateStr;
         if (!Object.keys(dateClickInfo).includes('DiaryItem')) {
           console.log("처음 클릭");
-          navigate('/new');
+          // navigate('/new');
         }
         else {
           console.log("DiaryItem 있음")
@@ -92,12 +92,15 @@ const Home = () => {
         // init background color found element
         fcDayElements.forEach((element, key, parent) => {
           element.style.backgroundColor = "";
+          const elemDate = element.getAttribute('data-date');
+          if (ClickedDate === elemDate) {
+            console.log(ClickedDate, elemDate, "클릭한 날짜랑 같음");
+          }
         });
         // set background color clicked Element
+        
         dateClickInfo.dayEl.style.backgroundColor = "#787878";
       }}
-      //events={formatEvents}
-      //events={this.showContent}
       headerToolbar={{
         //헤드 툴바
         start: "prev",
