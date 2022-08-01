@@ -24,11 +24,6 @@ body {
   background: white;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 20px 0px;
 }
-.App {
-  min-height: 100vh;
-  padding-left: 20px;
-  padding-right: 20px;
-}
 .light {
   background: #ffffff;
   color: black;
@@ -38,6 +33,11 @@ body {
   background: #29292e;
   color: #ececec;
   transition: 1s;
+}
+.App {
+  min-height: 100vh;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .App .theme_button_wrapper {
   cursor: pointer;
@@ -191,6 +191,8 @@ header button {
   
   grid-template-columns: repeat(5, auto);
   gap: 2%;
+
+  color: black;
 }
 .DiaryEditor .text_wrapper {
   display: flex;
@@ -233,6 +235,7 @@ header button {
   background-color: #ececec;
 
   padding: 10px;
+  color: black;
 }
 .control_box {
   display: flex;
