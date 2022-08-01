@@ -8,7 +8,7 @@ import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
 // COMPONENTS
 //for dark,lightmode
-import { useTheme } from "./components/useTheme";
+import { useTheme } from "./util/useTheme";
 import { motion } from "framer-motion";
 
 const reducer = (state, action) => {
