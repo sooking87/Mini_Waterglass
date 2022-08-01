@@ -37,6 +37,7 @@ const reducer = (state, action) => {
     default:
       return state;
   }
+  console.log("App compo", newState);
   localStorage.setItem("diary", JSON.stringify(newState));
   return newState;
 };
@@ -45,13 +46,14 @@ export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
 function App() {
+  /* for Dark/Light Mode */
   const [themeMode, toggleTheme] = useTheme();
-
   const theme =
     themeMode === "light"
       ? process.env.PUBLIC_URL + "/assets/sun.png"
       : process.env.PUBLIC_URL + "/assets/moon.png";
 
+  /* for DiaryItem init */
   useEffect(() => {
     const localData = localStorage.getItem("diary");
     if (localData) {
@@ -70,13 +72,14 @@ function App() {
 
   const [data, dispatch] = useReducer(reducer, []);
   const dataId = useRef(0);
+
   // CREATE
   const onCreate = (date, content, emotion) => {
     dispatch({
       type: "CREATE",
       data: {
         id: dataId.current,
-        date: new Date(date).getTime(),
+        date: date,
         content,
         emotion,
       },
@@ -93,7 +96,7 @@ function App() {
       type: "EDIT",
       data: {
         id: targetId,
-        date: new Date(date).getTime(),
+        date: date,
         content,
         emotion,
       },
@@ -116,7 +119,7 @@ function App() {
             />
             <Routes>
               <Route path="/" element={<Home></Home>}></Route>
-              <Route path="/new" element={<New></New>}></Route>
+              <Route path="/new/:date" element={<New></New>}></Route>
               <Route path="/edit/:id" element={<Edit></Edit>}></Route>
               <Route path="/diary/:id" element={<Diary></Diary>}></Route>
             </Routes>

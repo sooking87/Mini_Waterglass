@@ -5,21 +5,20 @@ import MyHeader from "./MyHeader";
 import MyButton from "./MyButton";
 import EmotionItem from "./EmotionItem";
 import { DiaryDispatchContext } from "./../App.js";
-import { emotionList } from "./../util/emotionList";
 import MarkdownEditor from "./MarkdownEditor";
 import Preview from "./Preview";
+// util
+import { emotionList } from "./../util/emotionList";
+import { toStringByFormatting } from "../util/getFormattedDate";
 
-const getStringDate = (date) => {
-  return date.toISOString().slice(0, 10);
-};
-
-const DiaryEditor = ({ isEdit, originData }) => {
+const DiaryEditor = ({ isEdit, originData, clickedDate }) => {
   const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
   const [content, setContent] = useState("");
   const [emotion, setEmotion] = useState(3);
   const [date, setDate] = useState("");
   const navigate = useNavigate();
   const editor = document.querySelector(".editor");
+  const [year, month, day] = clickedDate.split("-");
 
   const handleSubmit = () => {
     if (content.length < 1) {
@@ -61,11 +60,11 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
   useEffect(() => {
     if (isEdit) {
-      setDate(getStringDate(new Date(parseInt(originData.date))));
+      setDate(originData.date);
       setEmotion(originData.emotion);
       setContent(originData.content);
     } else {
-      setDate(getStringDate(new Date()));
+      setDate(clickedDate);
     }
   }, [isEdit, originData]);
 
@@ -91,14 +90,13 @@ const DiaryEditor = ({ isEdit, originData }) => {
       ></MyHeader>
       <div>
         <section>
-          <h4 className="title">오늘은 언제인가요?</h4>
-          <div className="input_box">
-            <input
-              className="input_date"
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            />
+          <div className="full_day">
+            <span className="hand_write">{year}</span>
+            <span className="default_write">년 </span>
+            <span className="hand_write">{month}</span>
+            <span className="default_write">월 </span>
+            <span className="hand_write">{day}</span>
+            <span className="default_write">일 </span>
           </div>
         </section>
         <section>

@@ -113,18 +113,17 @@ header button {
   padding-top: 15px;
   padding-bottom: 15px;
 
-  border-bottom: 1px solid #e2e2e2;
-
   display: flex;
   justify-content: space-between;
 }
 .DiaryItem .emotion_img_wrapper {
   cursor: pointer;
-  min-width: 120px;
+  min-width: 60px;
   height: 80px;
   border-radius: 5px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .DiaryItem .emotion_img_wrapper_1 {
   background-color: #64c964;
@@ -143,7 +142,8 @@ header button {
 }
 
 .DiaryItem .emotion_img_wrapper img {
-  width: 50%;
+  width: 60%;
+  height: auto;
 }
 .DiaryItem .info_wrapper {
   flex-grow: 1;
@@ -171,19 +171,16 @@ header button {
   font-size: 22px;
   font-weight: bold;
 }
-.DiaryEditor .input_date {
-  border: none;
-  border-radius: 5px;
-  background-color: #ececec;
-  font-size: 18px;
-
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-
-  cursor: pointer;
-  font-family: 'Nanum Pen Script', cursive;
+.DiaryEditor .full_day {
+  margin-top: 20px;
+}
+.DiaryEditor .hand_write {
+  font-size: 40px;
+  font-family: 'Nanum Pen Script';
+}
+.DiaryEditor .default_write {
+  font-size: 28px;
+  font-family: 'Nanum Myeongjo', serif;
 }
 
 .DiaryEditor .emotion_list_wrapper {
@@ -242,6 +239,7 @@ header button {
   justify-content: space-between;
   align-items: center;
 }
+
 /* EmotionItem */
 .EmotionItem {
   cursor: pointer;
@@ -255,15 +253,11 @@ header button {
   justify-content: center;
   align-items: center;
 }
-
 .EmotionItem img {
   width: 50%;
   margin-bottom: 10px;
 }
 
-.EmotionItem span {
-  font-size: 18px;
-}
 .EmotionItem_off {
   background-color: #ececec;
 }
@@ -354,6 +348,7 @@ header button {
   border-radius: 5px;
   word-break: keep-all;
   overflow-wrap: break-word; 
+  color: black;
 }
 
 

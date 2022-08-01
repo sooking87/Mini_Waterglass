@@ -1,16 +1,19 @@
 import DiaryEditor from "../components/DiaryEditor";
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const New = () => {
+  const { date } = useParams();
+  console.log("New", date);
   // 페이지 별 타이틀 수정하기
   useEffect(() => {
-    const titleElem = document.getElementsByTagName('title')[0];
-    titleElem.innerHTML = `새 일기`
-  }, [])
+    const titleElem = document.getElementsByTagName("title")[0];
+    titleElem.innerHTML = `새 일기`;
+  }, []);
 
   return (
     <div>
-      <DiaryEditor></DiaryEditor>
+      <DiaryEditor clickedDate={date}></DiaryEditor>
     </div>
   );
 };

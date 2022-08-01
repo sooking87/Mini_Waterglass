@@ -7,13 +7,6 @@ const DiaryList = ({ diaryList }) => {
   const navigate = useNavigate();
   return (
     <div className="DiaryList">
-      <div className="right_col">
-        <MyButton
-          type={"positive"}
-          text={"+"}
-          onClick={() => navigate("./new")}
-        ></MyButton>
-      </div>
       {diaryList.map((it) => (
         <DiaryItem key={it.id} {...it}></DiaryItem>
       ))}
