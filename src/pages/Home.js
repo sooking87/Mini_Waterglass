@@ -95,6 +95,7 @@ const Home = () => {
           if (clickedDate === elemDate) {
             console.log(clickedDate, elemDate, "클릭한 날짜랑 같음");
             testFunc(clickedDate);
+            <DiaryList diayList={data}></DiaryList>
           }
         });
         // set background color clicked Element
