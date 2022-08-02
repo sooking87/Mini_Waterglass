@@ -17,4 +17,4 @@ const New = () => {
   );
 };
 
-export default New;
+export default React.memo(New);

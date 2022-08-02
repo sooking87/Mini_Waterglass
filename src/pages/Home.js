@@ -17,16 +17,6 @@ const Home = () => {
 
   const navigate = useNavigate();
   const diaryList = useContext(DiaryStateContext);
-  const [change, setChange] = useState();
-  console.log(change);
-
-  /* for notice prev, next button clicked */
-  useEffect(() => {
-    const prevBtn = document.querySelectorAll(".fc-toolbar-chunk");
-    prevBtn.forEach((btn) =>
-      btn.addEventListener("click", (e) => setChange(e))
-    );
-  }, []);
 
   /* DiaryList에 일기가 존재하는지 아닌지 판별하는 함수 */
   const isUnion = (dateClickInfo) => {
@@ -42,9 +32,6 @@ const Home = () => {
       return false;
     }
   };
-
-  /* 선택적 Mouse Over 기능 */
-  const canMouseOver = () => {};
 
   /* for FullCalendar events List */
   const getEventList = useMemo(() => {
@@ -79,6 +66,13 @@ const Home = () => {
             navigate(`./new/${dateClickInfo.dateStr}`);
           }
         }}
+        eventMouseEnter={(mouseEnterInfo) => {
+          mouseEnterInfo.el.style.cssText =
+            "transform:scaleX(1.2) scaleY(1.2) ;";
+        }}
+        eventMouseLeave={(mouseLeaveInfo) => {
+          mouseLeaveInfo.el.style.cssText = "transform:scale(1.0);";
+        }}
         events={getEventList}
         eventContent={renderEventContent} //이벤트 내용 커스텀
         headerToolbar={{
@@ -97,23 +91,3 @@ DiaryList.defaultProps = {
 };
 
 export default Home;
-
-// /* for create + button */
-// useEffect(() => {
-//   // a bit unsafe: I'm just grabbing the table via a class name
-//   const calendarElement = document.getElementsByClassName(
-//     "fc-scrollgrid-sync-table"
-//   )[0];
-//   console.log(calendarElement);
-
-//   if (calendarElement.tagName === "TABLE") {
-//     const trElements = calendarElement.getElementsByClassName(
-//       ".fc-scrollgrid-sync"
-//     );
-//     console.log(trElements);
-//     for (let i = 0; i < trElements.length; i++) {
-//       const tr = trElements[i];
-//       console.log(tr);
-//     }
-//   }
-// }, []);

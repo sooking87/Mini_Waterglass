@@ -15,7 +15,7 @@ const Edit = () => {
   useEffect(() => {
     const titleElem = document.getElementsByTagName("title")[0];
     titleElem.innerHTML = `감정 일기장-${id}번 일기 수정`;
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (diaryList.length >= 1) {
@@ -29,7 +29,7 @@ const Edit = () => {
         navigate("/", { replace: true });
       }
     }
-  }, [diaryList, id]);
+  }, [diaryList, id, navigate]);
 
   return (
     <div>

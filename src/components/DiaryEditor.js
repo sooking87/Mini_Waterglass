@@ -19,6 +19,8 @@ const DiaryEditor = ({ isEdit, originData, clickedDate }) => {
   const editor = document.querySelector(".editor");
   const [year, month, day] = clickedDate.split("-");
 
+  console.log("DiaryEditor");
+
   const handleSubmit = () => {
     if (content.length < 1) {
       editor.classList.add("alertBlank");
@@ -145,4 +147,4 @@ const DiaryEditor = ({ isEdit, originData, clickedDate }) => {
   );
 };
 
-export default DiaryEditor;
+export default React.memo(DiaryEditor);
