@@ -33,6 +33,26 @@ const Home = () => {
   //   }
   // }, [diaryList]);
 
+  /* for handle fc cell Height */
+  useEffect(function setCalendarEventHeightHack() {
+    // a bit unsafe: I'm just grabbing the table via a class name
+    const calendarElement = document.getElementsByClassName(
+      "fc-scrollgrid-sync-table"
+    )[0];
+
+    if (calendarElement.tagName === "TABLE") {
+      const trElements = calendarElement.getElementsByClassName(
+        "fc-daygrid-day-events"
+      );
+
+      for (let i = 0; i < trElements.length; i++) {
+        const tr = trElements[i];
+
+        tr.style.height = "10vh";
+      }
+    }
+  }, []);
+
   // DiaryList에 일기가 존재하는지 아닌지 판별하는 함수
   const isUnion = (dateClickInfo) => {
     let isDif = true;
@@ -48,38 +68,51 @@ const Home = () => {
     }
   };
 
-  // DiaryList 컴포넌트로 diaryList 데이터 넘겨주기
-  const renderEventContent = (eventInfo) => {
-    
-    return (
-      <div>
-        {/* <img
-          src={process.env.PUBLIC_URL + `assets/emotion${diaryList.emotion}.png`}
-          alt=""
-        /> */}
-        {/* <DiaryList diaryList={diaryList}></DiaryList> */}
-        {
-          diaryList.map((it) => {
-            console.log(it.emotion);
-            <img
-                src={process.env.PUBLIC_URL + `assets/emotion${it.emotion}.png`}
-                alt=""
-            />
-          })
-        }
-      </div>
-    )
-  };
-
+  /* for FullCalendar events List */
   const getEventList = useMemo(() => {
     let eventList = [];
     for (var key of diaryList) {
-      const obj = { title: "", start: key.date, allDay: false};
+      const obj = {
+        title: "",
+        start: key.date,
+        allDay: false,
+        url: `assets/emotion${key.emotion}.png`,
+      };
       eventList = [obj, ...eventList];
     }
     console.log("Home getEventList", eventList);
     return eventList;
   }, [diaryList]);
+
+  const goDetail = () => {
+    navigate(`/diary/1`);
+  };
+
+  // DiaryList 컴포넌트로 diaryList 데이터 넘겨주기
+  const renderEventContent = (eventInfo) => {
+    console.log(eventInfo.classNames);
+    return (
+      <div className="DiaryItem">
+        <div
+          onClick={goDetail}
+          className={[
+            "emotion_img_wrapper",
+            `emotion_img_wrapper_${eventInfo.event.url}`,
+          ].join(" ")}
+        >
+          <img
+            src={eventInfo.event.url}
+            onClick={goDetail}
+            alt=""
+            width="auto"
+          />
+        </div>
+        {/* <div>
+          <DiaryItem eventInfo={eventInfo} />
+        </div> */}
+      </div>
+    );
+  };
 
   return (
     <div className="Home">
@@ -87,8 +120,9 @@ const Home = () => {
         plugins={[dayGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
         editable="true" //이벤트,드래그 등의 편집 기능 활용여부
-        height="850px"
+        height="90vw"
         width="100vw"
+        dayMaxEvents="1"
         dateClick={(dateClickInfo) => {
           // 데이터가 있다면 Diary 보여주기, 아니라면 new로 가기
           if (isUnion(dateClickInfo)) {
