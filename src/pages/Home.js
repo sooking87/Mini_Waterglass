@@ -88,6 +88,26 @@ const Home = () => {
     navigate(`/diary/1`);
   };
 
+  /* ! DELETE ! */
+  useEffect(function setCalendarEventHeightHack() {
+    // a bit unsafe: I'm just grabbing the table via a class name
+    const calendarElement = document.getElementsByClassName(
+      "fc-scrollgrid-sync-table"
+    )[0];
+
+    if (calendarElement.tagName === "TABLE") {
+      const trElements = calendarElement.getElementsByClassName(
+        "fc-daygrid-day-events"
+      );
+
+      for (let i = 0; i < trElements.length; i++) {
+        const tr = trElements[i];
+
+        tr.style.height = "10vh";
+      }
+    }
+  }, []);
+
   // DiaryList 컴포넌트로 diaryList 데이터 넘겨주기
   const renderEventContent = (eventInfo) => {
     console.log(eventInfo.classNames);
@@ -100,12 +120,7 @@ const Home = () => {
             `emotion_img_wrapper_${eventInfo.event.url}`,
           ].join(" ")}
         >
-          <img
-            src={eventInfo.event.url}
-            onClick={goDetail}
-            alt=""
-            width="auto"
-          />
+          <img src={eventInfo.event.url} onClick={goDetail} alt="" />
         </div>
         {/* <div>
           <DiaryItem eventInfo={eventInfo} />
@@ -119,9 +134,9 @@ const Home = () => {
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
-        editable="true" //이벤트,드래그 등의 편집 기능 활용여부
-        height="90vw"
-        width="100vw"
+        editable="false" //이벤트,드래그 등의 편집 기능 활용여부
+        height="90vh"
+        width="100vh"
         dayMaxEvents="1"
         dateClick={(dateClickInfo) => {
           // 데이터가 있다면 Diary 보여주기, 아니라면 new로 가기

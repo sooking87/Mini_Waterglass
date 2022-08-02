@@ -110,9 +110,6 @@ header button {
 
 /* DiaryItem */
 .DiaryItem {
-  padding-top: 15px;
-  padding-bottom: 15px;
-
   display: flex;
   justify-content: space-between;
 }
