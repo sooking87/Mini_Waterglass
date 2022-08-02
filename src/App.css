@@ -105,9 +105,7 @@ header .head_btn_right {
 header button {
   font-family: 'Nanum Pen Script';
 }
-.disabled-link {
-  pointer-events: none;
-}
+
 /* DiaryList */
 
 /* DiaryItem */

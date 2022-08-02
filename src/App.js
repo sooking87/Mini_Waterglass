@@ -42,7 +42,7 @@ const reducer = (state, action) => {
   return newState;
 };
 
-//localStorage.clear();
+// localStorage.clear();
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 

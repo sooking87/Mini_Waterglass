@@ -16,7 +16,7 @@ const Diary = () => {
   const navigate = useNavigate();
   const [data, setDate] = useState();
 
-  // 페이지 별 타이틀 수정하기
+  /* 페이지 별 타이틀 수정하기 */
   useEffect(() => {
     const titleElem = document.getElementsByTagName("title")[0];
     titleElem.innerHTML = `감정 일기장-${id}번 일기`;
@@ -35,7 +35,7 @@ const Diary = () => {
         navigate("/", { replace: true });
       }
     }
-  }, [id, diaryList]);
+  }, [id, diaryList, navigate]);
 
   if (!data) {
     return <div className="DiaryPage">로딩중입니다,,,</div>;

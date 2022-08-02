@@ -4,12 +4,10 @@ import React, { useContext, useEffect, useState, useMemo } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid"; //기본 달력을 그리기 위한 플러그인 - 설치해야함!
 import interactionPlugin from "@fullcalendar/interaction"; //이벤트,클릭,드래그 등의 기능을 이용하기 위한 플러그인
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DiaryList from "../components/DiaryList";
-import DiaryItem from "../components/DiaryItem";
 import { DiaryStateContext } from "../App";
-// util
-import { toStringByFormatting } from "../util/getFormattedDate";
+
 const Home = () => {
   // 페이지 별 타이틀 수정하기
   useEffect(() => {
@@ -19,31 +17,40 @@ const Home = () => {
 
   const navigate = useNavigate();
   const diaryList = useContext(DiaryStateContext);
+  const [change, setChange] = useState();
+  console.log(change);
 
-  /* for handle fc cell Height && disable href */
-  useEffect(function setCalendarEventHeightHack() {
+  /* for notice prev, next button clicked */
+  useEffect(() => {
+    const prevBtn = document.querySelectorAll('.fc-toolbar-chunk')
+    prevBtn.forEach((btn) => btn.addEventListener('click', (e) => setChange(e)));
+  }, [])
+
+  /* for handle fc cell Height */
+  useEffect(() => {
+    console.log("change or diaryList.lenght changed");
     // a bit unsafe: I'm just grabbing the table via a class name
     const calendarElement = document.getElementsByClassName(
       "fc-scrollgrid-sync-table"
-    )[0];
-
-    if (calendarElement.tagName === "TABLE") {
-      // cell 크기 고정
-      const trElements = calendarElement.getElementsByClassName(
-        "fc-daygrid-day-events"
-      );
-      for (let i = 0; i < trElements.length; i++) {
-        const tr = trElements[i];
-        
-        tr.style.height = "10vh";
+      )[0];
+      
+      if (calendarElement.tagName === "TABLE") {
+        // cell 크기 고정
+        const trElements = calendarElement.getElementsByClassName(
+          "fc-daygrid-day-events"
+        );
+        for (let i = 0; i < trElements.length; i++) {
+          const tr = trElements[i];
+          
+          tr.style.height = "10vh";
       }
     }
-  }, [diaryList.length]);
+  }, [change, diaryList.length]);
 
-  // DiaryList에 일기가 존재하는지 아닌지 판별하는 함수
+  /* DiaryList에 일기가 존재하는지 아닌지 판별하는 함수 */
   const isUnion = (dateClickInfo) => {
     let isDif = true;
-    diaryList.map((it) => {
+    diaryList.forEach((it) => {
       if (it.date === dateClickInfo.dateStr) {
         isDif = false;
       }
@@ -69,14 +76,10 @@ const Home = () => {
     return eventList;
   }, [diaryList]);
 
-
-
-  // DiaryList 컴포넌트로 diaryList 데이터 넘겨주기
+  /* DiaryList 컴포넌트로 diaryList에 eventInfo 넘겨주기 */
   const renderEventContent = (eventInfo) => {
     return (
-      <div className={"DiaryItem"}>
-        <DiaryList id_emotion={eventInfo.event.title}></DiaryList>
-      </div>
+      <DiaryList id_emotion={eventInfo.event.title}></DiaryList>
     );  
   };
 
@@ -89,6 +92,12 @@ const Home = () => {
         height="90vh"
         width="100vh"
         dayMaxEvents="1"
+        // eventMouseEnter={(arg) => {
+        //   arg.el.style.transform = "scale(1.2)";
+        // }}
+        // eventMouseLeave={(arg) => {
+        //   arg.el.style = "background-color: '';";
+        // }}
         dateClick={(dateClickInfo) => {
           // 데이터가 있다면 Diary 보여주기, 아니라면 new로 가기
           if (isUnion(dateClickInfo)) {

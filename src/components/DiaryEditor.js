@@ -9,7 +9,6 @@ import MarkdownEditor from "./MarkdownEditor";
 import Preview from "./Preview";
 // util
 import { emotionList } from "./../util/emotionList";
-import { toStringByFormatting } from "../util/getFormattedDate";
 
 const DiaryEditor = ({ isEdit, originData, clickedDate }) => {
   const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
@@ -66,7 +65,7 @@ const DiaryEditor = ({ isEdit, originData, clickedDate }) => {
     } else {
       setDate(clickedDate);
     }
-  }, [isEdit, originData]);
+  }, [clickedDate, isEdit, originData]);
 
   return (
     <div className="DiaryEditor">

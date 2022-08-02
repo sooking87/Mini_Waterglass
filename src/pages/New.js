@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 
 const New = () => {
   const { date } = useParams();
-  console.log("New", date);
   // 페이지 별 타이틀 수정하기
   useEffect(() => {
     const titleElem = document.getElementsByTagName("title")[0];

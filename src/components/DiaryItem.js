@@ -1,18 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import MyButton from "./MyButton";
 
 const DiaryItem = ({ id_emotion }) => {
   const navigate = useNavigate();
   const [id, emotion] = id_emotion.split(" ");
-  const goDetail = () => {
-    navigate(`/diary/${id}`);
-  };
-
-  const goEdit = () => {
-    navigate(`/edit/${id}`);
-  };
-
+  
   return (
     <div className={"DiaryItem"}>
       <div
