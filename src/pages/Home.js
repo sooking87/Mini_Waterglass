@@ -89,12 +89,36 @@ const Home = () => {
         height="90vh"
         width="100vh"
         dayMaxEvents="1"
-        dateClick={(dateClickInfo) => {
+       dateClick={(dateClickInfo) => {
           // 데이터가 있다면 Diary 보여주기, 아니라면 new로 가기
-          if (isUnion(dateClickInfo)) {
-            navigate(`./new/${dateClickInfo.dateStr}`);
-          }
-        }}
+          const fcDayElements = document.querySelectorAll(
+            ".fc-daygrid-day.fc-day"
+          );
+          // init background color found element
+          fcDayElements.forEach((element, key, parent) => {
+            
+            const fcDayElements = document.querySelectorAll(
+              ".fc-daygrid-day.fc-day"
+            );
+            // init background color found element
+            fcDayElements.forEach((element, key, parent) => {
+            if (isUnion(dateClickInfo)) {
+                    
+                  element.addEventListener("mouseenter",function(){
+                  element.innerHTML= "<img className='eventimage' src ='/assets/addDiary.png' width='85' />" 
+                  element.addEventListener("click",function(){
+                    navigate(`./new/${dateClickInfo.dateStr}`)
+                  })
+             }
+                  
+            )
+             element.addEventListener("mouseleave",function(){
+               element.innerHTML= "<img className='eventimage' src ='/assets/blank.png' width='85' />" 
+              
+            })
+          }})}
+          )}}
+          
         events={getEventList}
         eventContent={renderEventContent} //이벤트 내용 커스텀
         headerToolbar={{
