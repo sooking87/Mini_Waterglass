@@ -68,10 +68,12 @@ const Home = () => {
         }}
         eventMouseEnter={(mouseEnterInfo) => {
           mouseEnterInfo.el.style.cssText =
-            "transform:scaleX(1.2) scaleY(1.2) ;";
+            "transform:scaleX(1.2) scaleY(1.2) ;"
+           mouseEnterInfo.el.style.transition="1s";;
         }}
         eventMouseLeave={(mouseLeaveInfo) => {
-          mouseLeaveInfo.el.style.cssText = "transform:scale(1.0);";
+          mouseLeaveInfo.el.style.cssText = "transform:scale(1.0);"
+          mouseLeaveInfo.el.style.transition="1s";;
         }}
         events={getEventList}
         eventContent={renderEventContent} //이벤트 내용 커스텀
