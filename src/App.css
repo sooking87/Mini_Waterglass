@@ -113,7 +113,7 @@ header button {
   display: flex;
   justify-content: space-between;
 }
-.DiaryItem .emotion_img_wrapper {
+.fc-daygrid-event .DiaryItem .emotion_img_wrapper {
   cursor: pointer;
   min-width: 60px;
   height: 80px;
@@ -122,7 +122,7 @@ header button {
   justify-content: center;
   align-items: center;
 }
-.DiaryItem .emotion_img_wrapper_1 {
+.fc-daygrid-event .DiaryItem .emotion_img_wrapper_1 {
   background-color: #64c964;
 }
 .DiaryItem .emotion_img_wrapper_2 {

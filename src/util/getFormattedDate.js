@@ -13,6 +13,5 @@ export const toStringByFormatting = (source, delimiter = "-") => {
   const month = leftPad(source.getMonth() + 1);
   const day = leftPad(source.getDate());
 
-  console.log(year, month, day);
   return [year, month, day].join(delimiter);
 };

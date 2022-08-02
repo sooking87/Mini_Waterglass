@@ -8,7 +8,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import DiaryList from "../components/DiaryList";
 import DiaryItem from "../components/DiaryItem";
 import { DiaryStateContext } from "../App";
-
+// util
+import { toStringByFormatting } from "../util/getFormattedDate";
 const Home = () => {
   // 페이지 별 타이틀 수정하기
   useEffect(() => {
@@ -51,7 +52,8 @@ const Home = () => {
         tr.style.height = "10vh";
       }
     }
-  }, []);
+  }, [diaryList.length]);
+
 
   // DiaryList에 일기가 존재하는지 아닌지 판별하는 함수
   const isUnion = (dateClickInfo) => {
@@ -73,60 +75,25 @@ const Home = () => {
     let eventList = [];
     for (var key of diaryList) {
       const obj = {
-        title: "",
+        title: key.id + " " + key.emotion,
         start: key.date,
         allDay: false,
-        url: `assets/emotion${key.emotion}.png`,
+        url: `./assets/emotion${key.emotion}.png`,
       };
       eventList = [obj, ...eventList];
     }
-    console.log("Home getEventList", eventList);
     return eventList;
   }, [diaryList]);
 
-  const goDetail = () => {
-    navigate(`/diary/1`);
-  };
 
-  /* ! DELETE ! */
-  useEffect(function setCalendarEventHeightHack() {
-    // a bit unsafe: I'm just grabbing the table via a class name
-    const calendarElement = document.getElementsByClassName(
-      "fc-scrollgrid-sync-table"
-    )[0];
-
-    if (calendarElement.tagName === "TABLE") {
-      const trElements = calendarElement.getElementsByClassName(
-        "fc-daygrid-day-events"
-      );
-
-      for (let i = 0; i < trElements.length; i++) {
-        const tr = trElements[i];
-
-        tr.style.height = "10vh";
-      }
-    }
-  }, []);
 
   // DiaryList 컴포넌트로 diaryList 데이터 넘겨주기
   const renderEventContent = (eventInfo) => {
-    console.log(eventInfo.classNames);
     return (
-      <div className="DiaryItem">
-        <div
-          onClick={goDetail}
-          className={[
-            "emotion_img_wrapper",
-            `emotion_img_wrapper_${eventInfo.event.url}`,
-          ].join(" ")}
-        >
-          <img src={eventInfo.event.url} onClick={goDetail} alt="" />
-        </div>
-        {/* <div>
-          <DiaryItem eventInfo={eventInfo} />
-        </div> */}
+      <div className={"DiaryItem"}>
+        <DiaryList id_emotion={eventInfo.event.title} url={eventInfo.event.url}></DiaryList>
       </div>
-    );
+    );  
   };
 
   return (

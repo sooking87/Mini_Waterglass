@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import MyButton from "./MyButton";
 
-const DiaryItem = ({ id, emotion, content, date }) => {
+const DiaryItem = ({ id_emotion, url }) => {
   const navigate = useNavigate();
-
+  const [id, emotion] = id_emotion.split(" ");
   const goDetail = () => {
     navigate(`/diary/${id}`);
   };
@@ -16,14 +16,16 @@ const DiaryItem = ({ id, emotion, content, date }) => {
   return (
     <div className={"DiaryItem"}>
       <div
-        onClick={goDetail}
+        onClick={() => 
+          navigate(`/diary/${id}`)
+        }
         className={[
           "emotion_img_wrapper",
           `emotion_img_wrapper_${emotion}`,
         ].join(" ")}
       >
         <img
-          src={process.env.PUBLIC_URL + `assets/emotion${emotion}.png`}
+          src={process.env.PUBLIC_URL + url}
           alt=""
         />
       </div>
