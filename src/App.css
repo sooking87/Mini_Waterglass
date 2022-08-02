@@ -51,6 +51,31 @@ body {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 50%;
 }
+
+/* FullCalendar */
+.fc-daygrid-day-events {
+  margin: 5px;
+}
+.plus_button {
+  position: absolute;
+  width: 48px;
+  height: 45px;
+  left: 83.86px;
+  top: 121.96px;
+  
+  border: 2px solid #000000;
+}
+.fc-daygrid-day-events:hover {
+  border: 1px dotted white;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fc-daygrid-day-events {
+  height: 9vh;
+}
 /* COMPONENTS */
 /* MyButton */
 .MyButton {
@@ -113,16 +138,15 @@ header button {
   display: flex;
   justify-content: space-between;
 }
-.fc-daygrid-event .DiaryItem .emotion_img_wrapper {
+.DiaryItem .emotion_img_wrapper {
   cursor: pointer;
-  min-width: 60px;
-  height: 80px;
+  height: 85px;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.fc-daygrid-event .DiaryItem .emotion_img_wrapper_1 {
+.DiaryItem .emotion_img_wrapper_1 {
   background-color: #64c964;
 }
 .DiaryItem .emotion_img_wrapper_2 {
@@ -139,7 +163,7 @@ header button {
 }
 
 .DiaryItem .emotion_img_wrapper img {
-  width: 60%;
+  width: 50%;
   height: auto;
 }
 .DiaryItem .info_wrapper {
@@ -346,15 +370,5 @@ header button {
   word-break: keep-all;
   overflow-wrap: break-word; 
   color: black;
-}
-
-/* mouse Over */
-.fc-daygrid-day-events:hover {
-  background-image: url('../public/assets/addDiary.png');
-  background-repeat: no-repeat;
-  background-size: 65px;
-
-  cursor: pointer;
-  margin-left: 10px;
 }
 

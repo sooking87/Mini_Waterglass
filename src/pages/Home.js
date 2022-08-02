@@ -28,27 +28,6 @@ const Home = () => {
     );
   }, []);
 
-  /* for handle fc cell Height */
-  useEffect(() => {
-    console.log("change or diaryList.lenght changed");
-    // a bit unsafe: I'm just grabbing the table via a class name
-    const calendarElement = document.getElementsByClassName(
-      "fc-scrollgrid-sync-table"
-    )[0];
-
-    if (calendarElement.tagName === "TABLE") {
-      // cell 크기 고정
-      const trElements = calendarElement.getElementsByClassName(
-        "fc-daygrid-day-events"
-      );
-      for (let i = 0; i < trElements.length; i++) {
-        const tr = trElements[i];
-
-        tr.style.height = "10vh";
-      }
-    }
-  }, [change, diaryList.length]);
-
   /* DiaryList에 일기가 존재하는지 아닌지 판별하는 함수 */
   const isUnion = (dateClickInfo) => {
     let isDif = true;
@@ -65,6 +44,7 @@ const Home = () => {
   };
 
   /* 선택적 Mouse Over 기능 */
+  const canMouseOver = () => {};
 
   /* for FullCalendar events List */
   const getEventList = useMemo(() => {
@@ -96,7 +76,6 @@ const Home = () => {
         dayMaxEvents="1"
         dateClick={(dateClickInfo) => {
           if (isUnion(dateClickInfo)) {
-            console.log("추가 가능");
             navigate(`./new/${dateClickInfo.dateStr}`);
           }
         }}
@@ -118,3 +97,23 @@ DiaryList.defaultProps = {
 };
 
 export default Home;
+
+// /* for create + button */
+// useEffect(() => {
+//   // a bit unsafe: I'm just grabbing the table via a class name
+//   const calendarElement = document.getElementsByClassName(
+//     "fc-scrollgrid-sync-table"
+//   )[0];
+//   console.log(calendarElement);
+
+//   if (calendarElement.tagName === "TABLE") {
+//     const trElements = calendarElement.getElementsByClassName(
+//       ".fc-scrollgrid-sync"
+//     );
+//     console.log(trElements);
+//     for (let i = 0; i < trElements.length; i++) {
+//       const tr = trElements[i];
+//       console.log(tr);
+//     }
+//   }
+// }, []);
