@@ -20,21 +20,7 @@ const Home = () => {
   const navigate = useNavigate();
   const diaryList = useContext(DiaryStateContext);
 
-  // title에 해당하는 월에 맞게 필터링
-  // // 해당 달에 작성된 일기만 추리기 위한 코드
-  // useEffect(() => {
-  //   if (diaryList.length >= 1) {
-  //     const [year, month, day] = diaryList[0].date.split("-");
-  //     const firstDay = new Date(year, month - 1, 1).getTime();
-  //     const lastDay = new Date(year, month - 1, 0, 23, 59, 59).getTime();
-
-  //     setData(
-  //       diaryList.filter((it) => firstDay <= it.date && it.date <= lastDay)
-  //     );
-  //   }
-  // }, [diaryList]);
-
-  /* for handle fc cell Height */
+  /* for handle fc cell Height && disable href */
   useEffect(function setCalendarEventHeightHack() {
     // a bit unsafe: I'm just grabbing the table via a class name
     const calendarElement = document.getElementsByClassName(
@@ -42,18 +28,17 @@ const Home = () => {
     )[0];
 
     if (calendarElement.tagName === "TABLE") {
+      // cell 크기 고정
       const trElements = calendarElement.getElementsByClassName(
         "fc-daygrid-day-events"
       );
-
       for (let i = 0; i < trElements.length; i++) {
         const tr = trElements[i];
-
+        
         tr.style.height = "10vh";
       }
     }
   }, [diaryList.length]);
-
 
   // DiaryList에 일기가 존재하는지 아닌지 판별하는 함수
   const isUnion = (dateClickInfo) => {
@@ -78,7 +63,6 @@ const Home = () => {
         title: key.id + " " + key.emotion,
         start: key.date,
         allDay: false,
-        url: `./assets/emotion${key.emotion}.png`,
       };
       eventList = [obj, ...eventList];
     }
@@ -91,7 +75,7 @@ const Home = () => {
   const renderEventContent = (eventInfo) => {
     return (
       <div className={"DiaryItem"}>
-        <DiaryList id_emotion={eventInfo.event.title} url={eventInfo.event.url}></DiaryList>
+        <DiaryList id_emotion={eventInfo.event.title}></DiaryList>
       </div>
     );  
   };

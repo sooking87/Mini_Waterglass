@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import MyButton from "./MyButton";
 
-const DiaryItem = ({ id_emotion, url }) => {
+const DiaryItem = ({ id_emotion }) => {
   const navigate = useNavigate();
   const [id, emotion] = id_emotion.split(" ");
   const goDetail = () => {
@@ -25,7 +25,8 @@ const DiaryItem = ({ id_emotion, url }) => {
         ].join(" ")}
       >
         <img
-          src={process.env.PUBLIC_URL + url}
+          src={process.env.PUBLIC_URL + `./assets/emotion${emotion}.png`}
+          
           alt=""
         />
       </div>
