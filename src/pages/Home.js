@@ -79,6 +79,13 @@ const Home = () => {
             navigate(`./new/${dateClickInfo.dateStr}`);
           }
         }}
+         eventMouseEnter={(mouseEnterInfo)=>{
+          mouseEnterInfo.el.style.cssText="transform:scaleX(1.2) scaleY(1.2) ;"
+        }}
+        eventMouseLeave={(mouseLeaveInfo)=>{
+         
+           mouseLeaveInfo.el.style.cssText="transform:scale(1.0);"
+         }}
         events={getEventList}
         eventContent={renderEventContent} //이벤트 내용 커스텀
         headerToolbar={{
