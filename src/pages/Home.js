@@ -49,19 +49,24 @@ const Home = () => {
   };
 
   // DiaryList 컴포넌트로 diaryList 데이터 넘겨주기
-  const renderEventContent = (eventInfo, createElem) => {
+  const renderEventContent = (eventInfo) => {
     
-    console.log(createElem);
-    diaryList.map((it) => {
-      console.log(it.emotion);
-    })
     return (
       <div>
         {/* <img
           src={process.env.PUBLIC_URL + `assets/emotion${diaryList.emotion}.png`}
           alt=""
         /> */}
-        <DiaryList diaryList={diaryList}></DiaryList>
+        {/* <DiaryList diaryList={diaryList}></DiaryList> */}
+        {
+          diaryList.map((it) => {
+            console.log(it.emotion);
+            <img
+                src={process.env.PUBLIC_URL + `assets/emotion${it.emotion}.png`}
+                alt=""
+            />
+          })
+        }
       </div>
     )
   };
