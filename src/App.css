@@ -348,5 +348,13 @@ header button {
   color: black;
 }
 
+/* mouse Over */
+.fc-daygrid-day-events:hover {
+  background-image: url('../public/assets/addDiary.png');
+  background-repeat: no-repeat;
+  background-size: 65px;
 
+  cursor: pointer;
+  margin-left: 10px;
+}
 
