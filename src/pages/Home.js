@@ -10,23 +10,6 @@ import DiaryItem from "../components/DiaryItem";
 import { DiaryStateContext } from "../App";
 
 const Home = () => {
-  const tempList = [
-    {
-      title: "event1",
-      start: "2022-08-08",
-    },
-    {
-      title: "event2",
-      start: "2022-08-05",
-      end: "2022-08-07",
-    },
-    {
-      title: "event3",
-      start: "2022-08-09",
-      allDay: false, // will make the time show
-    },
-  ];
-  console.log(tempList);
   // 페이지 별 타이틀 수정하기
   useEffect(() => {
     const titleElem = document.getElementsByTagName("title")[0];
@@ -66,19 +49,27 @@ const Home = () => {
   };
 
   // DiaryList 컴포넌트로 diaryList 데이터 넘겨주기
-  const renderEventContent = (eventInfo) => {
-    console.log("renderEventConent", diaryList);
-    // return (
-    //   <div>
-    //     <DiaryItem key={it.id} {...it}></DiaryItem>
-    //   </div>
-    // );
+  const renderEventContent = (eventInfo, createElem) => {
+    
+    console.log(createElem);
+    diaryList.map((it) => {
+      console.log(it.emotion);
+    })
+    return (
+      <div>
+        {/* <img
+          src={process.env.PUBLIC_URL + `assets/emotion${diaryList.emotion}.png`}
+          alt=""
+        /> */}
+        <DiaryList diaryList={diaryList}></DiaryList>
+      </div>
+    )
   };
 
   const getEventList = useMemo(() => {
     let eventList = [];
     for (var key of diaryList) {
-      const obj = { title: "", start: key.date, allDay: false };
+      const obj = { title: "", start: key.date, allDay: false};
       eventList = [obj, ...eventList];
     }
     console.log("Home getEventList", eventList);
