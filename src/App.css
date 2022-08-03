@@ -59,18 +59,32 @@ body {
 }
 
 /* FullCalendar */
-.fc-daygrid-day-events {
+/* .fc-daygrid-day-events {
   height: 9vh;
   margin: 5px;
-  /* transition: 5s linear; */
-}
-.fc-daygrid-day-events:hover {
+  transition: 5s linear;
+} */
+/* .fc-daygrid-day-events:hover {
   border: 1px dotted #8b8b8b;
   border-radius: 5px;
   cursor: pointer;
-}
+} */
 .fc-daygrid-dot-event {
   padding: 0px;
+}
+.fc-daygrid-day-events {
+  height: 9vh;
+  margin: 6px;
+
+}
+.fc-daygrid-day-events:hover {
+  background-image: url('../public/assets/plus.png');
+  background-repeat: no-repeat;
+  background-size: 30px;
+  
+ /* margin-left: 10%; */
+  cursor: pointer;
+ 
 }
 /* COMPONENTS */
 /* MyButton */
