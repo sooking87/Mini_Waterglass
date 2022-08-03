@@ -17,7 +17,7 @@ export const emotionList = [
   {
     emotion_id: 4,
     emotion_img: process.env.PUBLIC_URL + `/assets/emotion4.png`,
-    emotion_descript: "나름",
+    emotion_descript: "나쁨",
   },
   {
     emotion_id: 5,

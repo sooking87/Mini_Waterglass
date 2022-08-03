@@ -37,7 +37,6 @@ const reducer = (state, action) => {
     default:
       return state;
   }
-  console.log("App compo", newState);
   localStorage.setItem("diary", JSON.stringify(newState));
   return newState;
 };
@@ -49,10 +48,9 @@ export const DiaryDispatchContext = React.createContext();
 function App() {
   /* for Dark/Light Mode */
   const [themeMode, toggleTheme] = useTheme();
-  const theme =
-    themeMode === "light"
-      ? process.env.PUBLIC_URL + "/assets/sun.png"
-      : process.env.PUBLIC_URL + "/assets/moon.png";
+  const theme = themeMode === "light"
+                ? process.env.PUBLIC_URL + "/assets/sun.png"
+                : process.env.PUBLIC_URL + "/assets/moon.png";
 
   /* for DiaryItem init */
   useEffect(() => {
@@ -107,7 +105,6 @@ function App() {
   return (
     <DiaryStateContext.Provider value={data}>
       <DiaryDispatchContext.Provider value={{ onCreate, onRemove, onEdit }}>
-        <BrowserRouter>
           <div className={["App", `${themeMode}`].join(" ")}>
             <motion.img
               src={theme}
@@ -117,15 +114,16 @@ function App() {
                 opacity: 0,
                 rotate: 100,
               }}
-            />
+              />
+          <BrowserRouter>
             <Routes>
               <Route path="/" element={<Home></Home>}></Route>
               <Route path="/new/:date" element={<New></New>}></Route>
               <Route path="/edit/:id" element={<Edit></Edit>}></Route>
               <Route path="/diary/:id" element={<Diary></Diary>}></Route>
             </Routes>
-          </div>
         </BrowserRouter>
+        </div>
       </DiaryDispatchContext.Provider>
     </DiaryStateContext.Provider>
   );
