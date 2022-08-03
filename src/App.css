@@ -12,11 +12,17 @@ body {
   .App {
     width: 640px;
   }
+  .App .theme_button_wrapper {
+    margin-left: 300px;
+  }
 }
 
 @media (max-width: 650px) {
   .App {
     width: 90vw;
+  }
+  .App .theme_button_wrapper {
+    margin-left: 42vw;
   }
 }
 #root {
@@ -44,7 +50,6 @@ body {
   margin-top: 5px;
   width: 20px;
   height: 20px;
-  margin-left: 300px;
 }
 .App .theme_button_wrapper:hover {
   background: rgba(0, 0, 0, 0.2);
