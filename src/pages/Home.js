@@ -68,12 +68,12 @@ const Home = () => {
         }}
         eventMouseEnter={(mouseEnterInfo) => {
           mouseEnterInfo.el.style.cssText =
-            "transform:scaleX(1.2) scaleY(1.2) ;"
-           mouseEnterInfo.el.style.transition="1s";
+            "transform: scaleX(1.4) scaleY(1.2);";
+           mouseEnterInfo.el.style.transition="1s cubic-bezier(0, 0.83, 0.58, 1.25)";
         }}
         eventMouseLeave={(mouseLeaveInfo) => {
           mouseLeaveInfo.el.style.cssText = "transform:scale(1.0);"
-          mouseLeaveInfo.el.style.transition="1s";
+          mouseLeaveInfo.el.style.transition="1s cubic-bezier(0, 0.83, 0.58, 1.25)";
         }}
         events={getEventList}
         eventContent={renderEventContent} //이벤트 내용 커스텀
@@ -93,3 +93,7 @@ DiaryList.defaultProps = {
 };
 
 export default Home;
+
+/* fc에서 dom 조작 방법 */
+// mouseEnterInfo.el.classList.remove(".fc-daygird-day-events");
+// console.log(mouseEnterInfo.el);

@@ -10,7 +10,7 @@ const DiaryItem = ({ id_emotion }) => {
       <div
         onClick={() => navigate(`/diary/${id}`)}
         className={[
-          "fc-daygrid-event",
+          ".fc-daygrid-day-event",
           "emotion_img_wrapper",
           `emotion_img_wrapper_${emotion}`,
         ].join(" ")}

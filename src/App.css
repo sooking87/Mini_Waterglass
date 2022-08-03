@@ -8,7 +8,13 @@ body {
   height: 100vh;
   margin: 0px;
 }
+@keyframes plusButton {
+  from {
+    background-color: #8b8b8b;
+    width: 10px;
 
+  }
+}
 @media (min-width: 650px) {
   .App {
     width: 640px;
@@ -54,27 +60,17 @@ body {
 
 /* FullCalendar */
 .fc-daygrid-day-events {
+  height: 9vh;
   margin: 5px;
-}
-.plus_button {
-  position: absolute;
-  width: 48px;
-  height: 45px;
-  left: 83.86px;
-  top: 121.96px;
-  
-  border: 2px solid #000000;
+  /* transition: 5s linear; */
 }
 .fc-daygrid-day-events:hover {
-  border: 1px dotted white;
+  border: 1px dotted #8b8b8b;
   border-radius: 5px;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
-.fc-daygrid-day-events {
-  height: 9vh;
+.fc-daygrid-dot-event {
+  padding: 0px;
 }
 /* COMPONENTS */
 /* MyButton */
@@ -134,17 +130,15 @@ header button {
 /* DiaryList */
 
 /* DiaryItem */
-.DiaryItem {
-  display: flex;
-  justify-content: space-between;
-}
 .DiaryItem .emotion_img_wrapper {
   cursor: pointer;
-  height: 85px;
+  height: 9vh;
   border-radius: 5px;
+  
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 .DiaryItem .emotion_img_wrapper_1 {
   background-color: #64c964;
@@ -161,27 +155,9 @@ header button {
 .DiaryItem .emotion_img_wrapper_5 {
   background-color: #fd585f;
 }
-
 .DiaryItem .emotion_img_wrapper img {
   width: 50%;
   height: auto;
-}
-.DiaryItem .info_wrapper {
-  flex-grow: 1;
-  cursor: pointer;
-  margin-left: 20px;
-
-}
-.DiaryItem .diary_date {
-  font-weight: bold;
-  font-size: 25px;
-  margin-bottom: 5px;
-}
-.DiaryItem .diary_content_preview {
-  font-size: 10px;
-}
-.DiaryItem .btn_wrapper {
-  min-width: 70px;
 }
 
 /* DiaryEditor */
