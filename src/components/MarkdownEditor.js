@@ -1,6 +1,8 @@
 import TextArea from "./TextArea";
+import React from "react";
 
 function MarkdownEditor({ content, setContent }) {
+  console.log("MD");
   return (
     <section id="editor-container">
       <form>
@@ -10,4 +12,4 @@ function MarkdownEditor({ content, setContent }) {
   );
 }
 
-export default MarkdownEditor;
+export default React.memo(MarkdownEditor);

@@ -1,22 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import DiaryItem from "./DiaryItem";
-import MyButton from "./MyButton";
 
-const DiaryList = ({ diaryList }) => {
-  const navigate = useNavigate();
+const DiaryList = ({ id_emotion }) => {
   return (
     <div className="DiaryList">
-      <div className="right_col">
-        <MyButton
-          type={"positive"}
-          text={"+"}
-          onClick={() => navigate("./new")}
-        ></MyButton>
-      </div>
-      {diaryList.map((it) => (
-        <DiaryItem key={it.id} {...it}></DiaryItem>
-      ))}
+      <DiaryItem id_emotion={id_emotion} />
     </div>
   );
 };

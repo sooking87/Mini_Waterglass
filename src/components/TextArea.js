@@ -1,4 +1,5 @@
 const TextArea = ({ content, setContent }) => {
+  console.log("TextArea");
   return (
     <textarea
       placeholder="오늘은 어땠나요?"
