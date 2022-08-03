@@ -2,7 +2,7 @@
 
 <https://mini-waterglass.web.app/>
 
-## ✏️ 강의
+## ✏️ Lecture
 
 <https://www.udemy.com/course/winterlood-react-basic/>
 
