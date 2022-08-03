@@ -1,6 +1,6 @@
 # 💦 Emotion Diary with Mini_Waterglass
 
-<배포 링크 자리>
+<https://mini-waterglass.web.app/>
 
 ## ✏️ 강의
 
