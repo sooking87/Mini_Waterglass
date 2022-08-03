@@ -1,6 +1,10 @@
-# 💦 SimpleDiary with Mini_Waterglass
+# 💦 Emotion Diary with Mini_Waterglass
 
 <배포 링크 자리>
+
+## ✏️ 강의
+
+<https://www.udemy.com/course/winterlood-react-basic/>
 
 ## 🪓 tool: React
 

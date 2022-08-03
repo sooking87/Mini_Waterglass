@@ -8,13 +8,6 @@ body {
   height: 100vh;
   margin: 0px;
 }
-@keyframes plusButton {
-  from {
-    background-color: #8b8b8b;
-    width: 10px;
-
-  }
-}
 @media (min-width: 650px) {
   .App {
     width: 640px;
