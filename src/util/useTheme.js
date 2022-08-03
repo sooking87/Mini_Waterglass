@@ -3,12 +3,12 @@ import {useState} from 'react';
 export const useTheme = () => {
     
     // 브라우저 테마 정보 확인
-    const initTheme = localStorage.getItem('theme');
+    let initTheme = localStorage.getItem('theme');
     // default : light
     if (!initTheme) {
         localStorage.setItem('theme', 'light');
+        initTheme = localStorage.getItem('theme');
     }
-    
 
     const [theme, setTheme] = useState(initTheme);
 

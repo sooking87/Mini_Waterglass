@@ -48,7 +48,7 @@ export const DiaryDispatchContext = React.createContext();
 function App() {
   /* for Dark/Light Mode */
   const [themeMode, toggleTheme] = useTheme();
-  const theme = (!themeMode || themeMode === "light") ? process.env.PUBLIC_URL + "/assets/sun.png"
+  const theme = (themeMode === "light") ? process.env.PUBLIC_URL + "/assets/sun.png"
   : process.env.PUBLIC_URL + "/assets/moon.png";
   
   /* for DiaryItem init */
