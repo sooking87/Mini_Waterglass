@@ -59,16 +59,7 @@ body {
 }
 
 /* FullCalendar */
-/* .fc-daygrid-day-events {
-  height: 9vh;
-  margin: 5px;
-  transition: 5s linear;
-} */
-/* .fc-daygrid-day-events:hover {
-  border: 1px dotted #8b8b8b;
-  border-radius: 5px;
-  cursor: pointer;
-} */
+
 .fc-daygrid-dot-event {
   padding: 0px;
 }
@@ -78,9 +69,10 @@ body {
 
 }
 .fc-daygrid-day-events:hover {
-  background-image: url('../public/assets/plus.png');
+  background-image: url('../public/assets/addDiary.png');
   background-repeat: no-repeat;
-  background-size: 30px;
+  background-size: 65px;
+  background-position: center;
   
  /* margin-left: 10%; */
   cursor: pointer;
