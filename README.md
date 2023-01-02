@@ -10,6 +10,17 @@
 
 <img src="https://img.shields.io/badge/React-191A1B?style=flat&logo=React&logoColor=61DAFB"/>
 
+## Contributions
+
+| 김민희   | 손수경   |
+| -------- | -------- |
+| Frontend | Frontend |
+
+백은 간단하게 파이어베이스를 통해서 설정함. <br>
+
+- 김민희: 메인 화면에 캘린더 그리기, 특정 일을 클릭하면 "새 일기쓰기" 페이지로 넘어가기.
+- 손수경: 다크모드/라이트모드 적용, "새 일기쓰기" 칸을 마크다운 형식으로 만들기
+
 ## Prerequisite
 
 ```txt
